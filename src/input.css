@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@theme {
+  /* Tenor Sans is a wide, quiet, slightly formal sans. The last displays were
+     a light serif, a rounded heavy, a condensed signage face and a weighted
+     serif, so a REFINED WIDE SANS is a new class. It is also the deliberate
+     opposite of the script lettering hair salons reach for. */
+  --font-display: "Tenor Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Nobile", ui-sans-serif, system-ui, sans-serif;
+
+  /* Deep thyme with burnished copper. Hair salons default to blush pink, rose
+     gold, marble and a script font, or to a black-and-white editorial look,
+     and all of it is refused. What the reviews describe is somebody who tests
+     a strand before committing and talks you through it, so the palette is
+     calm and considered rather than glamorous. */
+  --color-brand-50: #f5f7f4;
+  --color-brand-100: #e8ede6;
+  --color-brand-200: #d1dccd;
+  --color-brand-300: #adc0a7;
+  --color-brand-400: #839c7c;
+  --color-brand-500: #627d5c;
+  --color-brand-600: #4c6547;
+  --color-brand-700: #3e523a;
+  --color-brand-800: #344331;
+  --color-brand-900: #2c382a;
+  --color-brand-950: #161e15;
+
+  /* Copper. Warm enough to carry the hair-colour association without ever
+     becoming rose gold, and accent-700 is deep enough for white button text. */
+  --color-accent-50: #fdf6f1;
+  --color-accent-100: #fae9dd;
+  --color-accent-200: #f3d0ba;
+  --color-accent-300: #e9ae8c;
+  --color-accent-400: #dc855b;
+  --color-accent-500: #cf6b3d;
+  --color-accent-600: #b85430;
+  --color-accent-700: #96412a;
+  --color-accent-800: #7a3726;
+  --color-accent-900: #653022;
+  --color-accent-950: #37170f;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    @apply bg-brand-50 text-brand-950 antialiased;
+  }
+  /* Tenor Sans ships a single weight. This is the FOURTH single-weight display
+     in a row (Fjalla One, Lilita One, Bellefair, now Tenor Sans), and asking
+     for bold would have the browser synthesise it every time. */
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    @apply font-normal tracking-tight;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent-700 px-7 py-3.5 text-base font-bold text-white shadow-lg shadow-brand-950/20 transition hover:bg-accent-800 focus:outline-none focus-visible:ring-4 focus-visible:ring-accent-200;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-brand-300 bg-white px-7 py-3.5 text-base font-bold text-brand-900 transition hover:border-brand-500 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-100;
+  }
+  .section-eyebrow {
+    @apply mb-3 inline-block text-xs font-bold uppercase tracking-[0.26em] text-accent-700;
+  }
+  .card {
+    @apply rounded-2xl border border-brand-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-full bg-white px-3.5 py-1.5 text-sm font-semibold text-brand-800 ring-1 ring-brand-200;
+  }
+  .note { @apply rounded-2xl border border-accent-200 bg-accent-50 p-6; }
+
+  .draw-wrap { @apply block w-full overflow-hidden; }
+
+  /* ---- Bespoke 1: a colour swatch fan, the ring of sample strands a
+         colourist opens out against your hair before deciding anything. It is
+         the choosing moment, and it is the drawing because the whole site
+         leads on testing before committing. ---- */
+  .fan { @apply relative mx-auto block; width: 300px; height: 250px; }
+  /* Every leaf is pinned to the rivet at (150, 210) and rotated out from it,
+     so nothing in the fan can float away from its pivot. */
+  .fn-leaf {
+    @apply absolute block;
+    left: 141px; top: 62px; width: 18px; height: 148px;
+    border-radius: 9px 9px 3px 3px;
+    transform-origin: 9px 148px;
+  }
+  /* Five tones running dark to light, which is what a swatch ring IS. */
+  .fn-l1 { transform: rotate(-44deg); background-color: var(--color-brand-950); }
+  .fn-l2 { transform: rotate(-22deg); background-color: var(--color-brand-800); }
+  .fn-l3 { transform: rotate(0deg);   background-color: var(--color-brand-600); }
+  .fn-l4 { transform: rotate(22deg);  background-color: var(--color-accent-600); }
+  .fn-l5 { transform: rotate(44deg);  background-color: var(--color-accent-300); }
+  /* The rivet is drawn last so it caps every leaf's inner end. */
+  .fn-rivet {
+    @apply absolute block rounded-full;
+    left: 134px; top: 194px; width: 32px; height: 32px;
+    background-color: var(--color-brand-700);
+  }
+  .fn-pin {
+    @apply absolute block rounded-full;
+    left: 144px; top: 204px; width: 12px; height: 12px;
+    background-color: var(--color-accent-200);
+  }
+
+  /* ---- Bespoke 2: a tint bowl with the brush standing in it. This is the
+         method rather than the result, which is the point of the section it
+         sits in. ---- */
+  .bowl { @apply relative mx-auto block; width: 260px; height: 240px; }
+  .bw-body {
+    @apply absolute block;
+    left: 50px; top: 128px; width: 160px; height: 76px;
+    border-radius: 6px 6px 74px 74px;
+    background-color: var(--color-brand-300);
+  }
+  /* The tint sits INSIDE the bowl, clear of every wall. */
+  .bw-tint {
+    @apply absolute block;
+    left: 66px; top: 140px; width: 128px; height: 46px;
+    border-radius: 4px 4px 56px 56px;
+    background-color: var(--color-accent-500);
+  }
+  .bw-rim {
+    @apply absolute block rounded-lg;
+    left: 44px; top: 120px; width: 172px; height: 14px;
+    background-color: var(--color-brand-600);
+  }
+  /* The brush handle projects well above the rim; the bristles sit in the tint. */
+  .bw-handle {
+    @apply absolute block rounded-sm;
+    left: 152px; top: 34px; width: 10px; height: 118px;
+    background-color: var(--color-brand-800);
+  }
+  .bw-bristles {
+    @apply absolute block;
+    left: 144px; top: 146px; width: 26px; height: 30px;
+    border-radius: 3px 3px 10px 10px;
+    background-color: var(--color-accent-200);
+  }
+
+  .faq-item { @apply border-b border-brand-200; }
+
+  .js-reveal {
+    @apply translate-y-4 opacity-0;
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .js-reveal.in { @apply translate-y-0 opacity-100; }
+}
+
+@media (max-width: 430px) {
+  .fan, .bowl { transform: scale(0.8); transform-origin: top center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js-reveal { @apply translate-y-0 opacity-100; transition: none; }
+}

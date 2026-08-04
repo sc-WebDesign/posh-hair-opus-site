@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://poshhairbyada.co.uk/sitemap.xml
