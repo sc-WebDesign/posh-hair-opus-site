@@ -73,73 +73,46 @@
   }
   .note { @apply rounded-2xl border border-accent-200 bg-accent-50 p-6; }
 
-  .draw-wrap { @apply block w-full overflow-hidden; }
+  /* ---- Photography, added in the V2 retrofit.
 
-  /* ---- Bespoke 1: a colour swatch fan, the ring of sample strands a
-         colourist opens out against your hair before deciding anything. It is
-         the choosing moment, and it is the drawing because the whole site
-         leads on testing before committing. ---- */
-  .fan { @apply relative mx-auto block; width: 300px; height: 250px; }
-  /* Every leaf is pinned to the rivet at (150, 210) and rotated out from it,
-     so nothing in the fan can float away from its pivot. */
-  .fn-leaf {
-    @apply absolute block;
-    left: 141px; top: 62px; width: 18px; height: 148px;
-    border-radius: 9px 9px 3px 3px;
-    transform-origin: 9px 148px;
-  }
-  /* Five tones running dark to light, which is what a swatch ring IS. */
-  .fn-l1 { transform: rotate(-44deg); background-color: var(--color-brand-950); }
-  .fn-l2 { transform: rotate(-22deg); background-color: var(--color-brand-800); }
-  .fn-l3 { transform: rotate(0deg);   background-color: var(--color-brand-600); }
-  .fn-l4 { transform: rotate(22deg);  background-color: var(--color-accent-600); }
-  .fn-l5 { transform: rotate(44deg);  background-color: var(--color-accent-300); }
-  /* The rivet is drawn last so it caps every leaf's inner end. */
-  .fn-rivet {
-    @apply absolute block rounded-full;
-    left: 134px; top: 194px; width: 32px; height: 32px;
-    background-color: var(--color-brand-700);
-  }
-  .fn-pin {
-    @apply absolute block rounded-full;
-    left: 144px; top: 204px; width: 12px; height: 12px;
-    background-color: var(--color-accent-200);
-  }
+     Two CSS drawings went: a colour swatch fan and a tint bowl with a brush in
+     it. Both are objects anyone can photograph.
 
-  /* ---- Bespoke 2: a tint bowl with the brush standing in it. This is the
-         method rather than the result, which is the point of the section it
-         sits in. ---- */
-  .bowl { @apply relative mx-auto block; width: 260px; height: 240px; }
-  .bw-body {
-    @apply absolute block;
-    left: 50px; top: 128px; width: 160px; height: 76px;
-    border-radius: 6px 6px 74px 74px;
-    background-color: var(--color-brand-300);
+     THE HERO IS THE JOB SHE IS ACTUALLY KNOWN FOR. Foils in, blonde coming up
+     through dark hair, which is the going-back-to-my-natural-colour story her
+     best review tells. Corrective colour is the highest-anxiety work in
+     hairdressing and it is what people search for at eleven at night.
+
+     The second frame is two hands clipping ONE isolated section, which is the
+     closest stock comes to a strand test. The strand test is this build's whole
+     spine: a soft-sounding reputation with a hard mechanism underneath it.
+
+     Sourcing notes. Gloves in hair colour are trade-correct and read
+     professional, unlike disposable nitrile elsewhere, so a colour frame is
+     never rejected for gloves alone. Two frames were rejected for reasons worth
+     keeping: one showed a busy floor with several stylists, and this is one
+     person in one room; the other was the same session as the hero at almost
+     the same distance, which would have read as one photograph printed
+     twice. ---- */
+  .hero-shot {
+    @apply relative isolate overflow-hidden;
+    min-height: 32rem;
   }
-  /* The tint sits INSIDE the bowl, clear of every wall. */
-  .bw-tint {
-    @apply absolute block;
-    left: 66px; top: 140px; width: 128px; height: 46px;
-    border-radius: 4px 4px 56px 56px;
-    background-color: var(--color-accent-500);
+  .hero-shot img {
+    @apply absolute inset-0 h-full w-full object-cover;
+    z-index: -2;
+    object-position: 56% 44%;
   }
-  .bw-rim {
-    @apply absolute block rounded-lg;
-    left: 44px; top: 120px; width: 172px; height: 14px;
-    background-color: var(--color-brand-600);
+  .hero-scrim {
+    @apply absolute inset-0;
+    z-index: -1;
+    background: linear-gradient(100deg, rgba(22, 30, 21, 0.94) 0%, rgba(22, 30, 21, 0.82) 34%, rgba(22, 30, 21, 0.42) 64%, rgba(22, 30, 21, 0.15) 100%);
   }
-  /* The brush handle projects well above the rim; the bristles sit in the tint. */
-  .bw-handle {
-    @apply absolute block rounded-sm;
-    left: 152px; top: 34px; width: 10px; height: 118px;
-    background-color: var(--color-brand-800);
+  .photo-frame {
+    @apply overflow-hidden rounded-2xl ring-1 ring-brand-200 shadow-sm;
   }
-  .bw-bristles {
-    @apply absolute block;
-    left: 144px; top: 146px; width: 26px; height: 30px;
-    border-radius: 3px 3px 10px 10px;
-    background-color: var(--color-accent-200);
-  }
+  .photo-frame img { @apply block h-full w-full object-cover; }
+  .photo-caption { @apply mt-3 text-xs leading-relaxed text-brand-500; }
 
   .faq-item { @apply border-b border-brand-200; }
 
@@ -150,9 +123,7 @@
   .js-reveal.in { @apply translate-y-0 opacity-100; }
 }
 
-@media (max-width: 430px) {
-  .fan, .bowl { transform: scale(0.8); transform-origin: top center; }
-}
+
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
